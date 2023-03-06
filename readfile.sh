@@ -3,7 +3,6 @@
 
 function goinside 
 {
-	echo 'inside goinsidefunction'
 	targetfile=`mktemp`
    funcout=`curl $line | grep '<span class="name">' | cut -d'"' -f4 | sed "s|^|$line|" > $targetfile ` 
    checkfolder $targetfile
@@ -20,8 +19,7 @@ do
 	    echo $line
 		goinside $line
 else
-	# wget $line -p
-	echo 'this line is file'
+	echo 'downloading..'
 	wget $line -p
 fi
 done  < $1
@@ -29,7 +27,7 @@ done  < $1
 
 function firstcurl 
 {
-	echo 'readind passed url'
+	echo 'reading passed url'
 	output=`curl $1 | grep '<span class="name">' | cut -d'"' -f4 | sed "s|^|$1|"  > first`
 	 checkfolder first 
 }
